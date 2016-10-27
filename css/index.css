@@ -1,7 +1,68 @@
-.tanslate_body>.logo_img{
-	text-align: center;
+/* 初始化 */
+*{margin: 0;padding: 0;box-sizing: border-box;}
+body{background-color: #f5f5f5}
+.translate_body>.logo_img{
 	display: block;
+	text-align: center;
+	margin: 20px 0;
 }
-.tanslate_body>.logo_img>img{
+.translate_body>.logo_img>img{
 	width: 100px;
+}
+.translate_main{
+	padding: 0 15px;
+}
+.translate_main>textarea{
+	height: 160px;
+	width: 100%;
+	display: block;
+	padding: 10px;
+	line-height: 1.5;
+	border: none;
+	outline: none;
+	margin-bottom: 15px;
+}
+/* 翻译结果 */
+.result>.translation,.result>.phrase{
+	background-color: #fff;
+}
+.result h2{
+	font-size: 14px;
+	color: #313131;
+	border-bottom: 1px solid #f5f5f5;
+	padding: 10px;
+}
+.result>.translation{
+	margin-bottom: 10px;
+}
+.result>.translation>.translation_main,
+.result>.phrase>.phrase_main
+{
+	padding: 10px;
+}
+.result>.translation>.translation_main>ul,
+.result>.phrase>.phrase_main>ul
+{
+	list-style: none;
+}
+.result>.translation>.translation_main>ul li,
+.result>.phrase>.phrase_main>ul li
+{
+	padding-top: 7px;
+	font-size: 14px;
+}
+.result>.translation>.translation_main>ul li:first-child,
+.result>.phrase>.phrase_main>ul li:first-child
+{
+	padding: 0;
+}
+.result>.phrase>.phrase_main>ul li>div span{
+}
+.result>.phrase>.phrase_main>ul li>div>div{
+	overflow: hidden;
+	margin: 10px 0;
+}
+.result>.phrase>.phrase_main>ul li>div p{
+	float: left;
+	margin-left: 7px;
 }
