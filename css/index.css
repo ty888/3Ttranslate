@@ -1,0 +1,7 @@
+.tanslate_body>.logo_img{
+	text-align: center;
+	display: block;
+}
+.tanslate_body>.logo_img>img{
+	width: 100px;
+}
