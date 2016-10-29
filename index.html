@@ -11,39 +11,27 @@
 	<div class="translate_body">
 		<span class="logo_img"><img src="pic/logo.png"/></span>
 		<div class="translate_main">
-			<textarea placeholder="Please enter the text here"></textarea>
-			<div class="result">
+			<textarea v-model="word" debounce="500" placeholder="Please enter the text here"></textarea>
+			<div v-if="word !== ''" class="result">
 				<div class="translation">
 					<h2>译文</h2>
 					<div class="translation_main">
 						<ul>
-							<li>dog</li>
-							<li>n. 狗；丑女人；卑鄙的人；(俚)朋友</li>
-							<li>vt. 跟踪；尾随</li>
+							<li>{{translation.translation}}</li>
+							<li>{{translation.basic.explains[0]}}</li>
+							<li>{{translation.basic.explains[1]}}</li>
 						</ul>
 					</div>
 				</div>
 				<div class="phrase">
 					<h2>短语</h2>
 					<div class="phrase_main">
-						<ul>
+						<ul v-for="item in result">
 							<li>
 								<div>
-									<span><span>1.</span>Chinese people</span>
+									<span><span>{{$index + 1}}.</span>{{item.key}}</span>
 									<div>
-										<p>中国人</p>
-										<p>中国人</p>
-										<p>华夏人</p>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div>
-									<span><span>1.</span>Chinese people</span>
-									<div>
-										<p>中国人</p>
-										<p>中国人</p>
-										<p>华夏人</p>
+										<p>{{item.value}}</p>
 									</div>
 								</div>
 							</li>
@@ -53,9 +41,30 @@
 			</div>
 		</div>
 	</div>
-<script scr="lib/vue/vue.min.js"></script>
+<script src="lib/vue/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
 <script>
-	
+  var root_http = 'http://fanyi.youdao.com/openapi.do?keyfrom=test3t&key=877171021&type=data&doctype=jsonp&version=1.1&q=';
+	new Vue({
+		el: "body",
+		data: {
+			word: '',
+			translation: [],
+			result: []
+		},
+		watch: {
+			word: function () {
+			  this.$http.jsonp(root_http + this.word).then(function (response) {
+			    // success callback
+			    this.translation = response.data
+			    this.result = response.data.web
+			    console.log(response.data.web)
+			  }, function (response) {
+			    // error callback
+			  });
+			}
+		}
+	})
 </script>
 </body>
 </html>
